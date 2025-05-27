@@ -66,6 +66,10 @@ The configuration files are detailed in `Keyword-MLP/docs/config_file_explained.
 
 ### Alternatively, Constructing the Final Dataset
 
+Before starting the dataset construction, download the ESC-50 dataset:
+
+1. Download the ESC-50 dataset from [GitHub](https://github.com/karolpiczak/ESC-50?tab=readme-ov-file#download) and place it in the `Keyword-MLP-LangID` directory. This dataset will be used for augmentation.
+
 The `utils` folder provides all the necessary code to construct the final dataset:
 
 1. Download the kk/ru/tt dataset:
