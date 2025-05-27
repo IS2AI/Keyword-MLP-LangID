@@ -11,6 +11,11 @@ The final models are available on Hugging Face:
 - [Multi-SCR-LID Model](https://huggingface.co/artur-muratov/kw-mlp-multi-scr-lid)
 - [Mono Models](https://huggingface.co/artur-muratov/kw-mlp-mono-kk) (only language code differs)
 
+## Multilingual Dataset
+
+The multilingual speech commands dataset is available on Hugging Face:
+- [Multilingual Speech Commands Dataset](https://huggingface.co/datasets/artur-muratov/multilingual-speech-commands-15lang)
+
 ## Getting Started
 
 ### Prerequisites
