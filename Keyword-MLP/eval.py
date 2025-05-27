@@ -17,17 +17,16 @@ def load_config(conf_path):
         config = yaml.safe_load(f)
     return config
 
+def seed_worker(worker_id):
+    worker_seed = torch.initial_seed() % 2**32
+    np.random.seed(worker_seed)
+    random.seed(worker_seed)
+
 def set_deterministic():
     # Set PyTorch deterministic flags
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
     
-    # For DataLoader workers
-    def seed_worker(worker_id):
-        worker_seed = torch.initial_seed() % 2**32
-        np.random.seed(worker_seed)
-        random.seed(worker_seed)
-
     g = torch.Generator()
     g.manual_seed(0)
     

@@ -1,0 +1,72 @@
+# sample config to run a demo training of 10 epochs
+
+data_root: ./data_all/
+train_list_file: ./data_all/training_list.txt
+val_list_file: ./data_all/validation_list.txt
+test_list_file: ./data_all/testing_list.txt
+label_map: ./data_all/label_map.json
+lang_map: ./data_all/lang_map.json
+
+exp:
+    wandb: False
+    wandb_api_key:
+    proj_name: torch-kw-mlp-lc
+    exp_dir: ./runs
+    exp_name: kw-mlp-mul-final-2048-dropout-0.2
+    device: auto
+    log_freq: 20  # steps
+    log_to_file: True
+    log_to_stdout: True
+    val_freq: 1   # epochs
+    n_workers: 16
+    pin_memory: True
+    cache: 2
+    
+
+hparams:
+    restore_ckpt:
+    seed: 0
+    batch_size: 4
+    start_epoch: 0
+    n_epochs: 2
+    l_smooth: 0.1
+
+    audio:
+        sr: 16000
+        n_mels: 40
+        n_fft: 480
+        win_length: 480
+        hop_length: 160
+        center: False
+    
+    model:
+        type: kw-mlp 
+        input_res: [40, 98]
+        patch_res: [40, 1]
+        num_classes: 35
+        num_langs: 15
+        channels: 1
+        dim: 64
+        depth: 12
+        pre_norm: False
+        prob_survival: 0.9
+        dropout: 0.2
+        multitask: True
+
+    optimizer:
+        opt_type: adamw
+        opt_kwargs:
+          lr: 0.001
+          weight_decay: 0.1
+    
+    scheduler:
+        n_warmup: 10
+        max_epochs: 2
+        scheduler_type: cosine_annealing
+
+    augment:
+        spec_aug:
+            n_time_masks: 1
+            time_mask_width: 20
+            n_freq_masks: 1
+            freq_mask_width: 7

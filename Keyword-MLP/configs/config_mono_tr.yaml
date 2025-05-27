@@ -1,0 +1,71 @@
+######################
+# sample config file
+######################
+
+data_root: ./data_tr/
+train_list_file: ./data_tr/training_list.txt
+val_list_file: ./data_tr/validation_list.txt
+test_list_file: ./data_tr/testing_list.txt
+label_map: ./data_tr/label_map.json
+
+exp:
+    wandb: False
+    wandb_api_key: ""
+    proj_name: torch-kw-mlp-tr
+    exp_dir: ./runs
+    exp_name: kw-mlp-mono-tr-final
+    device: auto
+    log_freq: 20  # steps
+    log_to_file: True
+    log_to_stdout: True
+    val_freq: 1   # epochs
+    n_workers: 16
+    pin_memory: True
+    cache: 2      # 0 -> no cache | 1 -> cache wavs | 2 -> cache specs; stops wav augments
+    
+
+hparams:
+    restore_ckpt:
+    seed: 0
+    batch_size: 2048
+    start_epoch: 0
+    n_epochs: 140
+    l_smooth: 0.1
+
+    audio:
+        sr: 16000
+        n_mels: 40
+        n_fft: 480
+        win_length: 480
+        hop_length: 160
+        center: False
+    
+    model:
+        type: kwmlp_single_head
+        input_res: [40, 98]
+        patch_res: [40, 1]
+        num_classes: 35
+        channels: 1
+        dim: 64
+        depth: 12
+        pre_norm: False
+        prob_survival: 0.9
+        multitask: False
+
+    optimizer:
+        opt_type: adamw
+        opt_kwargs:
+          lr: 0.001
+          weight_decay: 0.1
+    
+    scheduler:
+        n_warmup: 10
+        max_epochs: 140
+        scheduler_type: cosine_annealing
+
+    augment:
+        spec_aug:
+            n_time_masks: 1
+            time_mask_width: 20
+            n_freq_masks: 1
+            freq_mask_width: 7
