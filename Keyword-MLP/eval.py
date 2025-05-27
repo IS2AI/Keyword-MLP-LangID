@@ -73,7 +73,7 @@ def main(args):
         with open(config["lang_map"], "r") as f:
             lang_map = json.load(f)
     else:
-        with open("data_all/lang_map.json", "r") as f:
+        with open("lang_map.json", "r") as f:
             lang_map = json.load(f)
     # Set fixed seed and ensure deterministic behavior
     seed_everything(config["hparams"]["seed"])
