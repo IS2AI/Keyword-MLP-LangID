@@ -14,7 +14,7 @@ The final models are available on Hugging Face:
 ## Multilingual Dataset
 
 The multilingual speech commands dataset is available on Hugging Face:
-- [Multilingual Speech Commands Dataset](https://huggingface.co/datasets/artur-muratov/multilingual-speech-commands-15lang)
+- [Multilingual Speech Commands Dataset](https://huggingface.co/datasets/artur-muratov/multilingual-speech-commands-15lang-zip)
 
 ## Getting Started
 
